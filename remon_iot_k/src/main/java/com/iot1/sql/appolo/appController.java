@@ -30,4 +30,14 @@ public class appController {
 		
 		return "app/naverlogin";
 	}
+	@RequestMapping(value = "/popup", method = RequestMethod.GET)
+	public String pop(){
+		
+		return "login/popup";
+	}
+	@RequestMapping(value = "/a", method = RequestMethod.GET)
+	public String query(){
+		
+		return "login/jquery";
+	}
 }
