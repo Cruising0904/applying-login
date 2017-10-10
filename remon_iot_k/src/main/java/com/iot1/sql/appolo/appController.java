@@ -40,4 +40,25 @@ public class appController {
 		
 		return "login/jquery";
 	}
+	@RequestMapping(value = "/login/gg", method = RequestMethod.GET)
+	public String gg(){
+		
+		return "login/gg";
+	}
+	@RequestMapping(value = "/login/kk", method = RequestMethod.GET)
+	public String kk(){
+		
+		return "login/kk";
+	}
+	@RequestMapping(value = "/login/fb", method = RequestMethod.GET)
+	public String fb(){
+		
+		return "login/fb";
+	}
+	@RequestMapping(value = "/login/nv", method = RequestMethod.GET)
+	public String nv(){
+		
+		return "login/nv";
+	}
+	
 }

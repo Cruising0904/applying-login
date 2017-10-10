@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="531182174364-opqp8ob664ikb4nq0f8qplffg4g6eti6.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <title>APPOLO</title>
 </head>
 <body>
@@ -49,18 +52,74 @@ $(function() {
     });
 });
 </script>
-<!-- 팝업 콘텐츠 
-<a class="btn" data-popup-open="popup-1" href="#">Open Popup #1</a>-->
+
+<!-- 팝업 콘텐츠 -->
  
 <div class="popup" data-popup="popup-1">
     <div class="popup-inner">
-        <h2>Wow! This is Awesome! (Popup #1)</h2>
-        <p>Donec in volutpat nisi. In quam lectus, aliquet rhoncus cursus a, congue et arcu. Vestibulum tincidunt neque id nisi pulvinar aliquam. Nulla luctus luctus ipsum at ultricies. Nullam nec velit dui. Nullam sem eros, pulvinar sed pellentesque ac, feugiat et turpis. Donec gravida ipsum cursus massa malesuada tincidunt. Nullam finibus nunc mauris, quis semper neque ultrices in. Ut ac risus eget eros imperdiet posuere nec eu lectus.</p>
+        <h2>Login</h2><p/>
+     	<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+     	<a href="#" onclick="signOut();">Sign out</a><p/>
+        <div class="fb-login-button" data-max-rows="1" data-size="large"
+      data-button-type="continue_with" data-show-faces="false"
+      data-auto-logout-link="false" data-use-continue-as="false"></div>
         <p><a data-popup-close="popup-1" href="#">Close</a></p>
         <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
     </div>
 </div>
 </body>
+<!-- 구글 로그인 -->
+<script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        key = AIzaSyDPjPMk_Hf8iQpxIJfsArCwOdPpfrX1JCo;
+        console.log("ID Token: " + id_token);
+      };
+    </script>
+    <!-- 구글 로그아웃 -->
+    <script>
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+    }
+  </script>
+    </script>
+    <!-- 페이스북 -->
+     <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1404609192970084',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.10'
+    });
+    FB.AppEvents.logPageView();   
+  };
+
+  (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id))
+         return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.10";
+      fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk')); // 페이스북 로그인 API
+   
+</script>
+<!-- 메인 슬라이드 -->
 <script>
 	$(document).ready(function(){
 		$(".button-collapse").sideNav();
@@ -79,11 +138,7 @@ $(function() {
 		$('.carousel').carousel('set', 5);
 	});
 
-	function goPage(page) {
-		if (page == "appolo") {
-			location.href = "/";
-		}
-	}
+	
 </script>
 <style>
 /* Outer */
