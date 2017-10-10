@@ -1,12 +1,75 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-<meta name="google-signin-scope" content="profile email">
-<meta name="google-signin-client_id" content="531182174364-opqp8ob664ikb4nq0f8qplffg4g6eti6.apps.googleusercontent.com">
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 <title>APPOLO</title>
-</head>
-<body>
+<!-- 구글 로그인 버튼 헤드태그끝날때까지 -->
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+  <script src="https://apis.google.com/js/api:client.js"></script>
+  <script>
+  var googleUser = {};
+  var startApp = function() {
+    gapi.load('auth2', function(){
+      // Retrieve the singleton for the GoogleAuth library and set up the client.
+      auth2 = gapi.auth2.init({
+        client_id: '531182174364-opqp8ob664ikb4nq0f8qplffg4g6eti6.apps.googleusercontent.com',
+        cookiepolicy: 'single_host_origin',
+        // Request scopes in addition to 'profile' and 'email'
+        //scope: 'additional_scope'
+      });
+      attachSignin(document.getElementById('customBtn'));
+    });
+  };
+
+  function attachSignin(element) {
+    console.log(element.id);
+    auth2.attachClickHandler(element, {},
+        function(googleUser) {
+          document.getElementById('name').innerText = "Signed in: " +
+              googleUser.getBasicProfile().getName();
+        }, function(error) {
+          alert(JSON.stringify(error, undefined, 2));
+        });
+  }
+  </script>
+  <style type="text/css">
+    #customBtn {
+      display: inline-block;
+      background-color: #E24825;
+      color: white;
+      width: 233px;
+      border-radius: 5px;
+      border: thin solid #888;
+      box-shadow: 1px 1px 1px grey;
+      white-space: nowrap;
+    }
+    #customBtn:hover {
+      cursor: pointer;
+    }
+    span.label {
+      font-family: serif;
+      font-weight: normal;
+    }
+    span.icon {
+      background: url('/resources/img/gg.png') transparent 5px 50% no-repeat;
+      display: inline-block;
+      vertical-align: middle;
+      width: 42px;
+      height: 39px;
+    }
+    span.buttonText {
+      display: inline-block;
+      vertical-align: left;
+      padding-left: 42px;
+      padding-right: 42px;
+      font-size: 16px;
+/*       font-weight: bold; */
+      /* Use the Roboto font that is loaded in the <head> */
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+  </head>
+  <body>
 <!-- side bar -->
  <ul id="slide-out" class="side-nav">
     <li><a href="/"><i class="material-icons">apps</i>APPOLO</a></li>
@@ -58,17 +121,31 @@ $(function() {
 <div class="popup" data-popup="popup-1">
     <div class="popup-inner">
         <h2>Login</h2><p/>
-     	<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-     	<a href="#" onclick="signOut();">Sign out</a><p/>
+        <!-- In the callback, you would hide the gSignInWrapper element on a
+  successful sign in -->
+  <div id="gSignInWrapper">
+    <span class="label"></span> <!-- 여기 태그안에 글 입력하면 버튼 앞에 글 나옴. -->
+    <div id="customBtn" class="customGPlusSignIn">
+      <span class="icon"></span>
+      <span class="buttonText">Google로 로그인</span>
+    </div>
+  </div>
+  <div id="name"></div><p/>
+  <script>startApp();</script>
+     	
         <div class="fb-login-button" data-max-rows="1" data-size="large"
-      data-button-type="continue_with" data-show-faces="false"
-      data-auto-logout-link="false" data-use-continue-as="false"></div>
-        <p><a data-popup-close="popup-1" href="#">Close</a></p>
+      data-button-type="login_with" data-show-faces="false"
+      data-auto-logout-link="true" data-use-continue-as="true"></div></br>
+      
+        <p ><a data-popup-close="popup-1" href="#"style="color:black;background-color:white;">Close</a></p>
         <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
     </div>
 </div>
+
+
+
 </body>
-<!-- 구글 로그인 -->
+<!-- 구글 토큰 -->
 <script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
@@ -85,16 +162,6 @@ $(function() {
         key = AIzaSyDPjPMk_Hf8iQpxIJfsArCwOdPpfrX1JCo;
         console.log("ID Token: " + id_token);
       };
-    </script>
-    <!-- 구글 로그아웃 -->
-    <script>
-    function signOut() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
-      });
-    }
-  </script>
     </script>
     <!-- 페이스북 -->
      <script>
@@ -114,7 +181,7 @@ $(function() {
          return;
       js = d.createElement(s);
       js.id = id;
-      js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.10";
+      js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.10&appId=349863832106694";
       fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk')); // 페이스북 로그인 API
    
@@ -192,7 +259,7 @@ $(function() {
     -webkit-transform:translate(50%, -50%) rotate(180deg);
     transform:translate(50%, -50%) rotate(180deg);
     background:rgba(0,0,0,1);
-    text-decoration:none;
+    text-decoration:black;
 }
 </style>
 

@@ -15,21 +15,7 @@ public class appController {
 		
 		return "app/main";
 	}
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(){
-		
-		return "app/login";
-	}
-	@RequestMapping(value = "/login2", method = RequestMethod.GET)
-	public String login2(){
-		
-		return "app/login2";
-	}
-	@RequestMapping(value = "/naverlogin", method = RequestMethod.GET)
-	public String naverlogin(){
-		
-		return "app/naverlogin";
-	}
+	
 	@RequestMapping(value = "/popup", method = RequestMethod.GET)
 	public String pop(){
 		
@@ -38,12 +24,22 @@ public class appController {
 	@RequestMapping(value = "/a", method = RequestMethod.GET)
 	public String query(){
 		
-		return "login/jquery";
+		return "login/pop";
 	}
 	@RequestMapping(value = "/login/gg", method = RequestMethod.GET)
 	public String gg(){
 		
 		return "login/gg";
+	}
+	@RequestMapping(value = "/login/ggc", method = RequestMethod.GET)
+	public String ggc(){
+		
+		return "login/ggc";
+	}
+	@RequestMapping(value = "/login/ggcc", method = RequestMethod.GET)
+	public String ggcc(){
+		
+		return "login/ggcc";
 	}
 	@RequestMapping(value = "/login/kk", method = RequestMethod.GET)
 	public String kk(){
