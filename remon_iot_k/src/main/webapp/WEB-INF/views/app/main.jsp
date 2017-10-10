@@ -137,7 +137,7 @@ $(function() {
       data-button-type="login_with" data-show-faces="false"
       data-auto-logout-link="true" data-use-continue-as="true"></div></br>
       
-        <p ><a data-popup-close="popup-1" href="#"style="color:black;background-color:white;">Close</a></p>
+        <p ><a data-popup-close="popup-1" href="#" class="cbtn">Close</a></p>
         <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
     </div>
 </div>
@@ -222,7 +222,7 @@ $(function() {
 /* Inner */
 .popup-inner {
     max-width:700px;
-    width:90%;
+    min-width:100px;
     padding:40px;
     position:absolute;
     top:50%;
@@ -233,6 +233,10 @@ $(function() {
     border-radius:3px;
     background:#fff;
 }
+/* Close */
+ .pop-layer .btn-r {width: 100%; margin:10px 0 20px; padding-top: 10px; border-top: 1px solid #DDD; text-align:right;}
+a.cbtn {display:inline-block; height:25px; padding:0 14px 0; border:1px solid #304a8a; background-color:#3f5a9d; font-size:13px; color:#fff; line-height:25px;}
+a.cbtn:hover {border: 1px solid #091940; background-color:#1f326a; color:#fff;}
  
 /* Close Button */
 .popup-close {
