@@ -54,8 +54,9 @@
       background: url('/resources/img/gg.png') transparent 5px 50% no-repeat;
       display: inline-block;
       vertical-align: middle;
-      width: 42px;
-      height: 39px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
     }
     span.buttonText {
       display: inline-block;
