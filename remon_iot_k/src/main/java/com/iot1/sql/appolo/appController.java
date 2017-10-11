@@ -24,7 +24,7 @@ public class appController {
 	@RequestMapping(value = "/a", method = RequestMethod.GET)
 	public String query(){
 		
-		return "login/pop";
+		return "login/jquery";
 	}
 	@RequestMapping(value = "/login/gg", method = RequestMethod.GET)
 	public String gg(){
@@ -41,20 +41,9 @@ public class appController {
 		
 		return "login/ggcc";
 	}
-	@RequestMapping(value = "/login/kk", method = RequestMethod.GET)
-	public String kk(){
-		
-		return "login/kk";
-	}
 	@RequestMapping(value = "/login/fb", method = RequestMethod.GET)
 	public String fb(){
 		
 		return "login/fb";
 	}
-	@RequestMapping(value = "/login/nv", method = RequestMethod.GET)
-	public String nv(){
-		
-		return "login/nv";
-	}
-	
 }

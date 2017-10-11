@@ -99,6 +99,8 @@
 <script>
 $(function() {
     //----- OPEN
+    var popup = $('.popup');
+    
     $('[data-popup-open]').on('click', function(e)  {
         var targeted_popup_class = jQuery(this).attr('data-popup-open');
         $('[data-popup="' + targeted_popup_class + '"]').fadeIn(900);
@@ -113,7 +115,14 @@ $(function() {
  
         e.preventDefault();
     });
+    
+    $(document).keyup(function(e) {
+        if (e.keyCode === 27) {
+
+        	$('[data-popup-close]').click();
+        }  
 });
+})
 </script>
 
 <!-- 팝업 콘텐츠 -->
@@ -138,7 +147,7 @@ $(function() {
       data-auto-logout-link="true" data-use-continue-as="true"></div></br>
       
         <p ><a data-popup-close="popup-1" href="#" class="cbtn">Close</a></p>
-        <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+        <a class="popup-close" data-popup-close="popup-1" href="#">xx</a>
     </div>
 </div>
 
@@ -258,6 +267,14 @@ a.cbtn:hover {border: 1px solid #091940; background-color:#1f326a; color:#fff;}
     line-height:100%;
     color:#fff;
 }
+.popup--active {
+  top: 10%;
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: all 250ms ease-out;
+  transition: all 250ms ease-out;
+}
+
  
 .popup-close:hover {
     -webkit-transform:translate(50%, -50%) rotate(180deg);
